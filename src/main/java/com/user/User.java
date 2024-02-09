@@ -3,28 +3,39 @@ package com.user;
 import java.util.ArrayList;
 
 class User {
+	private int userId;
 	private String nickName;
 	private String firstNname;
 	private String lastName;
 	private String middleName = "";
-	private double tenantRate = -1.0;
-	private double landlordRate = -1.0;
+	private Double tenantRate = -1.0;
+	private Double landlordRate = -1.0;
 	private ArrayList<Double> tenantRateList;
 	private ArrayList<Double> landlordRateList;
 	
-	public User (String nickName, String firstNname, String lastName, String middleName) {
+	public User (int userId, String nickName, String firstNname, String lastName, String middleName) {
+		this.userId = userId;
 		this.nickName = nickName;
 		this.firstNname = firstNname;
 		this.lastName = lastName;
 		this.middleName = middleName;
 	}
 	
-	public User (String nickName, String firstNname, String lastName) {
+	public User (int userId, String nickName, String firstNname, String lastName) {
+		this.userId = userId;
 		this.nickName = nickName;
 		this.firstNname = firstNname;
 		this.lastName = lastName;
 	}
 	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	public String getNickName() {
 		return nickName;
 	}

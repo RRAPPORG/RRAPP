@@ -1,13 +1,23 @@
 package com.ratereview;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+@Table(name = "RATE_REVIEW")
 class RateReviewUser {
-	private int rateReviewId;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long rateReviewId;
 	private int fromUserId;
 	private int toUserid;
 	private Double rate;
 	private String review;
 	
-	public RateReviewUser(int rateReviewId, int fromUserId, int toUserid, Double rate, String review) {
+	public RateReviewUser(Long rateReviewId, int fromUserId, int toUserid, Double rate, String review) {
 		super();
 		this.rateReviewId = rateReviewId;
 		this.fromUserId = fromUserId;
@@ -16,11 +26,11 @@ class RateReviewUser {
 		this.review = review;
 	}
 
-	public int getRateReviewId() {
+	public Long getRateReviewId() {
 		return rateReviewId;
 	}
 
-	public void setRateReviewId(int rateReviewId) {
+	public void setRateReviewId(Long rateReviewId) {
 		this.rateReviewId = rateReviewId;
 	}
 

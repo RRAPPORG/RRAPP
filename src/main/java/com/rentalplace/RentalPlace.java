@@ -1,13 +1,23 @@
 package com.rentalplace;
 
-class RentalPlace {
-	private int rentalPlaceId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+@Table(name = "RENTAL_PLACE")
+public class RentalPlace {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long rentalPlaceId;
 	private int ownerUserId;
 	private String location;
 	private String description;
 	private Double rentalPlaceRate = -1.0;
 	
-	public RentalPlace(int rentalPlaceId, int ownerUserId, String location, String description,
+	public RentalPlace(Long rentalPlaceId, int ownerUserId, String location, String description,
 			Double rentalPlaceRate) {
 		super();
 		this.rentalPlaceId = rentalPlaceId;
@@ -17,11 +27,11 @@ class RentalPlace {
 		this.rentalPlaceRate = rentalPlaceRate;
 	}
 
-	public int getRentalPlaceId() {
+	public Long getRentalPlaceId() {
 		return rentalPlaceId;
 	}
 
-	public void setRentalPlaceId(int rentalPlaceId) {
+	public void setRentalPlaceId(Long rentalPlaceId) {
 		this.rentalPlaceId = rentalPlaceId;
 	}
 

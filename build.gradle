@@ -20,6 +20,20 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// the GOAT ORM
+    implementation 'org.hibernate.orm:hibernate-core:6.4.4.Final'
+
+    // Hibernate Validator
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
+    implementation 'org.glassfish:jakarta.el:4.0.2'
+
+    // logging via Log4j
+    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    
+    implementation 'org.json:json:20240205'
+
+    // JPA Metamodel Generator
+    annotationProcessor 'org.hibernate.orm:hibernate-jpamodelgen:6.4.4.Final'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

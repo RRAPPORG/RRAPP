@@ -1,38 +1,63 @@
 package com.user;
 
-import java.util.ArrayList;
+import java.util.List;
 
-class User {
-	private int userId;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+import org.json.JSONObject;
+
+@Entity
+@Table(name = "USERS")
+public class User {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long userId;
+	@Column(unique=true)
 	private String nickName;
-	private String firstNname;
+	private String firstName;
 	private String lastName;
 	private String middleName = "";
-	private Double tenantRate = -1.0;
-	private Double landlordRate = -1.0;
-	private ArrayList<Double> tenantRateList;
-	private ArrayList<Double> landlordRateList;
+	private Double tenantRate = -1.0; //TODO
+	private Double landlordRate = -1.0; //TODO
+	private List<Double> tenantRateList; //TODO
+	private List<Double> landlordRateList; //TODO
 	
-	public User (int userId, String nickName, String firstNname, String lastName, String middleName) {
+	public User () {
+		
+	}
+	
+	public User (Long userId, String nickName, String firstName, String lastName, String middleName) {
 		this.userId = userId;
 		this.nickName = nickName;
-		this.firstNname = firstNname;
+		this.firstName = firstName;
 		this.lastName = lastName;
 		this.middleName = middleName;
 	}
 	
-	public User (int userId, String nickName, String firstNname, String lastName) {
+	public User (Long userId, String nickName, String firstName, String lastName) {
 		this.userId = userId;
 		this.nickName = nickName;
-		this.firstNname = firstNname;
+		this.firstName = firstName;
 		this.lastName = lastName;
 	}
 	
-	public int getUserId() {
+	public User (String nickName, String firstName, String lastName, String middleName) {
+		this.nickName = nickName;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.middleName = middleName;
+	}
+	
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -44,12 +69,12 @@ class User {
 		this.nickName = nickName;
 	}
 
-	public String getFirstNname() {
-		return firstNname;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirstNname(String firstNname) {
-		this.firstNname = firstNname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getLastName() {
@@ -84,21 +109,20 @@ class User {
 		this.landlordRate = landlordRate;
 	}
 
-	public ArrayList<Double> getTenantRateList() {
+	public List<Double> getTenantRateList() {
 		return tenantRateList;
 	}
 
-	public void setTenantRateList(ArrayList<Double> tenantRateList) {
+	public void setTenantRateList(List<Double> tenantRateList) {
 		this.tenantRateList = tenantRateList;
 	}
 
-	public ArrayList<Double> getLandlordRateList() {
+	public List<Double> getLandlordRateList() {
 		return landlordRateList;
 	}
 
-	public void setLandlordRateList(ArrayList<Double> landlordRateList) {
+	public void setLandlordRateList(List<Double> landlordRateList) {
 		this.landlordRateList = landlordRateList;
 	}
 
-	
 }

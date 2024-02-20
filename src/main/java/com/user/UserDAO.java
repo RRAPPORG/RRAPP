@@ -12,6 +12,10 @@ public interface UserDAO {
 	
 	public List<User> list();
 	
+	public void update(User user);
+	
+	public void remove(User user);
+	
 	public JSONObject getUserJson (User user);
 	
 }

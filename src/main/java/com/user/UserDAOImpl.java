@@ -20,7 +20,8 @@ public class UserDAOImpl implements UserDAO {
 	public UserDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
+	
+	@Override
 	public void save(User user) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -31,7 +32,7 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	public void save(String nickName, String firstName, String lastName, String middleName) {
-		User user = new User( nickName,  firstName,  lastName, middleName);
+		User user = new User(nickName, firstName, lastName, middleName);
 		this.save(user);
 	}
 	
@@ -41,6 +42,24 @@ public class UserDAOImpl implements UserDAO {
 		List<User> userList = session.createSelectionQuery("from User", User.class).getResultList();
 		session.close();
 		return userList;
+	}
+	
+	@Override
+	public void update(User user) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.merge(user);
+		tx.commit();
+		session.close();
+	}
+	
+	@Override
+	public void remove(User user) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.remove(user);
+		tx.commit();
+		session.close();
 	}
 	
 	@Override

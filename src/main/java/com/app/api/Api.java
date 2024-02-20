@@ -36,7 +36,7 @@ public class Api {
     }
 	
 	//API methods for User-START
-	@GetMapping("/user/get-all") //http://localhost:8080/api/user/get-all
+	@GetMapping(path="/user/get-all") //http://localhost:8080/api/user/get-all
 	public ResponseEntity<String> getAllUsers() {
 		UserDAO userDao = new UserDAOImpl(HibernateUtil.getSessionFactory());
 		List<User> data = userDao.list();
@@ -48,11 +48,33 @@ public class Api {
 		return new ResponseEntity<>(userJsonArray.toString(), HttpStatus.OK);
     }
 	
-	@PostMapping(path="/user/post-user", consumes = {"application/json",}) //http://localhost:8080/api/user/post-user
-	public ResponseEntity<String> postUser(@RequestBody User user) {
+	@PostMapping(path="/user/create", consumes = {"application/json",}) //http://localhost:8080/api/user/post-user
+	public ResponseEntity<String> createUser(@RequestBody User user) {
 		UserDAO userDao = new UserDAOImpl(HibernateUtil.getSessionFactory());
 		userDao.save(user);
 		return new ResponseEntity<>(HttpStatus.OK);
     }
+	
+	@PostMapping(path="/user/update", consumes = {"application/json",}) //http://localhost:8080/api/user/post-user
+	public ResponseEntity<String> updateUser(@RequestBody User user) {
+		UserDAO userDao = new UserDAOImpl(HibernateUtil.getSessionFactory());
+		if (user.getUserId().equals(null)) {
+			; //TODO Error Exception
+		}
+		userDao.update(user);
+		return new ResponseEntity<>(HttpStatus.OK);
+    }
+	
+	@PostMapping(path="/user/remove", consumes = {"application/json",}) //http://localhost:8080/api/user/post-user
+	public ResponseEntity<String> removeUser(@RequestBody User user) {
+		UserDAO userDao = new UserDAOImpl(HibernateUtil.getSessionFactory());
+		if (user.getUserId().equals(null)) {
+			; //TODO Error Exception
+		}
+		userDao.remove(user);
+		return new ResponseEntity<>(HttpStatus.OK);
+    }
+	//TODO Delete user
+	//TODO Registration
 	//API methods for User-END
 }
